@@ -44,6 +44,10 @@ vim.opt.smarttab = true
 vim.opt.smartindent = true
 vim.opt.wrap = true
 
+-- <Left>/<Right> wrap to the previous/next line at the line boundaries
+-- ("<" and ">" for normal/visual, "[" and "]" for insert/replace)
+vim.opt.whichwrap:append("<,>,[,]")
+
 -- Options from old .vimrc
 vim.opt.ruler = true
 vim.opt.lazyredraw = false

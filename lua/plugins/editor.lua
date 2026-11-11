@@ -210,4 +210,10 @@ return {
         },
         cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle" },
     },
+
+    -- Smooth scrolling
+    {
+        "karb94/neoscroll.nvim",
+        opts = {},
+    },
 }
