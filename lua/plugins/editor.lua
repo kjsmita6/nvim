@@ -1,6 +1,26 @@
 return {
     { "nvim-tree/nvim-web-devicons", opts = {} },
 
+    -- Detect tabs/spaces and indentation width from each file's contents.
+    { "tpope/vim-sleuth", event = "BufReadPost" },
+
+    -- Make completion opt-in: Ctrl+Space opens the list, arrows choose, Enter accepts.
+    {
+        "saghen/blink.cmp",
+        opts = {
+            completion = {
+                menu = { auto_show = false },
+                list = {
+                    selection = { preselect = false, auto_insert = false },
+                },
+            },
+            keymap = {
+                preset = "enter",
+                ["<C-space>"] = { "show" },
+            },
+        },
+    },
+
     -- Splits
     {
         "mrjones2014/smart-splits.nvim",

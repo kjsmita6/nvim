@@ -35,6 +35,15 @@ end
 -- Follow the system appearance: macchiato in dark mode, latte in light mode.
 -- Detected on macOS and Linux Mint (Cinnamon); anything else falls back to latte.
 function M.system_colorscheme()
+    -- A remote host cannot see the SSH client's desktop appearance. Allow the
+    -- launching environment to select a palette explicitly (e.g. NVIM_THEME=dark).
+    local override = (vim.env.NVIM_THEME or ""):lower()
+    if override == "dark" then
+        return "catppuccin-macchiato"
+    elseif override == "light" then
+        return "catppuccin-latte"
+    end
+
     return M.system_is_dark() and "catppuccin-macchiato" or "catppuccin-latte"
 end
 

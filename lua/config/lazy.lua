@@ -29,7 +29,7 @@ require("lazy").setup({
         -- Many plugins ship outdated releases; track the latest commit instead
         version = false,
     },
-    install = { colorscheme = { "catppuccin", "habamax" } },
+    install = { colorscheme = { "catppuccin" } },
     checker = {
         enabled = true,
         notify = false,
