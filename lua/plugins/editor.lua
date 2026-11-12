@@ -125,49 +125,6 @@ return {
         ft = { "markdown" },
     },
 
-    -- Terminal: <c-\> toggles a floating terminal, <M-1/2/3> open horizontal/vertical/float
-    -- <leader>wt / <leader>wT toggle the pinned horizontal/vertical split (same terminals as <M-1>/<M-2>)
-    {
-        "akinsho/toggleterm.nvim",
-        opts = {
-            size = function(term)
-                if term.direction == "horizontal" then
-                    return vim.o.lines * 0.3
-                elseif term.direction == "vertical" then
-                    return vim.o.columns * 0.4
-                end
-                return 20
-            end,
-            open_mapping = [[<c-\>]],
-            hide_numbers = true,
-            shade_terminals = true,
-            shading_factor = 2,
-            start_in_insert = true,
-            insert_mappings = true,
-            persist_size = false,
-            direction = "float",
-            close_on_exit = true,
-            auto_scroll = true,
-            float_opts = {
-                border = "curved",
-                winblend = 0,
-                highlights = {
-                    border = "Normal",
-                    background = "Normal",
-                },
-            },
-            winbar = { enabled = false },
-        },
-        keys = {
-            { [[<c-\>]], desc = "Toggle Terminal" },
-            { "<M-1>", "<cmd>101ToggleTerm direction=horizontal<cr>", mode = { "n", "t" }, desc = "Horizontal Terminal" },
-            { "<M-2>", "<cmd>102ToggleTerm direction=vertical<cr>",   mode = { "n", "t" }, desc = "Vertical Terminal" },
-            { "<M-3>", "<cmd>103ToggleTerm direction=float<cr>",      mode = { "n", "t" }, desc = "Float Terminal" },
-            { "<leader>wt", "<cmd>101ToggleTerm direction=horizontal<cr>", desc = "Terminal (split)" },
-            { "<leader>wT", "<cmd>102ToggleTerm direction=vertical<cr>",   desc = "Terminal (vsplit)" },
-        },
-    },
-
     {
         "hat0uma/csvview.nvim",
         ---@module "csvview"
