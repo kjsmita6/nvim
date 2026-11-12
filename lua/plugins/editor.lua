@@ -126,6 +126,7 @@ return {
     },
 
     -- Terminal: <c-\> toggles a floating terminal, <M-1/2/3> open horizontal/vertical/float
+    -- <leader>wt / <leader>wT toggle the pinned horizontal/vertical split (same terminals as <M-1>/<M-2>)
     {
         "akinsho/toggleterm.nvim",
         opts = {
@@ -162,6 +163,8 @@ return {
             { "<M-1>", "<cmd>101ToggleTerm direction=horizontal<cr>", mode = { "n", "t" }, desc = "Horizontal Terminal" },
             { "<M-2>", "<cmd>102ToggleTerm direction=vertical<cr>",   mode = { "n", "t" }, desc = "Vertical Terminal" },
             { "<M-3>", "<cmd>103ToggleTerm direction=float<cr>",      mode = { "n", "t" }, desc = "Float Terminal" },
+            { "<leader>wt", "<cmd>101ToggleTerm direction=horizontal<cr>", desc = "Terminal (split)" },
+            { "<leader>wT", "<cmd>102ToggleTerm direction=vertical<cr>",   desc = "Terminal (vsplit)" },
         },
     },
 
@@ -215,5 +218,22 @@ return {
     {
         "karb94/neoscroll.nvim",
         opts = {},
+    },
+
+    -- The refactoring extra puts its keys under <leader>r, which is Find Files here
+    -- (see config/keymaps.lua), so move them to <leader>R.
+    {
+        "ThePrimeagen/refactoring.nvim",
+        keys = function(_, keys)
+            local moved = {}
+            for _, key in ipairs(keys) do
+                key = vim.deepcopy(key)
+                if key[1]:find("^<leader>r") then
+                    key[1] = "<leader>R" .. key[1]:sub(10)
+                end
+                moved[#moved + 1] = key
+            end
+            return moved
+        end,
     },
 }

@@ -6,6 +6,13 @@ local map = vim.keymap.set
 -- <leader>l is the LSP group here (LazyVim uses it for :Lazy, which is still available via :Lazy)
 pcall(vim.keymap.del, "n", "<leader>l")
 
+-- Drop LazyVim's duplicates of keys that also live in a group:
+-- <leader>` = <leader>bb, <leader>- = <leader>ws, <leader>| = <leader>wv
+-- and the rarely used <leader>K (keywordprg) and <leader>L (LazyVim changelog)
+for _, lhs in ipairs({ "<leader>`", "<leader>-", "<leader>|", "<leader>K", "<leader>L" }) do
+    pcall(vim.keymap.del, "n", lhs)
+end
+
 -- Toggle comment (gc comes from Neovim's built-in commenting)
 map("n", "<leader>/", "gcc", { remap = true, desc = "Toggle Comment" })
 map("x", "<leader>/", "gc", { remap = true, desc = "Toggle Comment" })

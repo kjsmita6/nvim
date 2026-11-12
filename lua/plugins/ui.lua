@@ -79,6 +79,44 @@ return {
             -- Replaced by toggle comment and the Session group (see config/keymaps.lua)
             { "<leader>/", false },
             { "<leader>S", false },
+            -- Duplicates of <leader>fb, <leader>sc, <leader>ff and <leader>fE
+            { "<leader>,", false },
+            { "<leader>:", false },
+            { "<leader><space>", false },
+            { "<leader>E", false },
+            -- Scratch buffers (<leader>S is already the Session group)
+            { "<leader>.", false },
+            -- GitHub issue and pull request pickers
+            { "<leader>gi", false },
+            { "<leader>gI", false },
+            { "<leader>gp", false },
+            { "<leader>gP", false },
+        },
+    },
+
+    -- "classic" is the lvim look: full-width columns along the bottom (LazyVim uses "helix",
+    -- a single narrow column).
+    -- Sort every which-key menu alphabetically. The default sorters put buffer-local
+    -- mappings first and groups last, so a menu like `g` only looks sorted within each
+    -- bucket. which-key appends natural + case sorting, so only `order` (used by the
+    -- marks/registers menus) is kept ahead of it.
+    -- Menu labels for the extras added to this config: drop the plugin names they append, e.g.
+    -- "(Neogen)". A spec entry with only a desc changes the label shown here without touching what
+    -- the key does. LazyVim's own labels are left alone.
+    {
+        "folke/which-key.nvim",
+        opts = {
+            preset = "classic",
+            sort = { "order" },
+            spec = {
+                { "<leader>cn", desc = "Generate Annotations" },
+                { "<leader>cr", desc = "Rename" },
+                { "<leader>cs", desc = "Symbol Outline" },
+            },
+        },
+        keys = {
+            -- Buffer-local keymap list; <leader>sk already searches all keymaps
+            { "<leader>?", false },
         },
     },
 

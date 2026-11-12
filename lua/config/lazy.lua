@@ -21,6 +21,24 @@ require("lazy").setup({
         { import = "lazyvim.plugins.extras.lang.angular" },
         { import = "lazyvim.plugins.extras.linting.eslint" },
         { import = "lazyvim.plugins.extras.test.core" },
+        -- edgy must be imported before the extras that integrate with it (aerial, overseer)
+        { import = "lazyvim.plugins.extras.ui.edgy" },
+        -- Debugging (js-debug-adapter comes from the typescript extra)
+        { import = "lazyvim.plugins.extras.dap.core" },
+        -- Code navigation
+        { import = "lazyvim.plugins.extras.editor.aerial" },
+        { import = "lazyvim.plugins.extras.editor.illuminate" },
+        { import = "lazyvim.plugins.extras.ui.treesitter-context" },
+        { import = "lazyvim.plugins.extras.editor.inc-rename" },
+        -- Editing helpers
+        { import = "lazyvim.plugins.extras.coding.mini-surround" },
+        { import = "lazyvim.plugins.extras.coding.neogen" },
+        { import = "lazyvim.plugins.extras.editor.refactoring" },
+        { import = "lazyvim.plugins.extras.coding.yanky" },
+        -- Workflow
+        { import = "lazyvim.plugins.extras.editor.overseer" },
+        -- Treesitter parsers for git files (commit messages, rebase, .gitignore)
+        { import = "lazyvim.plugins.extras.lang.git" },
         { import = "plugins" },
     },
     defaults = {
