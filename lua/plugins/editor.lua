@@ -174,7 +174,26 @@ return {
     -- Smooth scrolling
     {
         "karb94/neoscroll.nvim",
-        opts = {},
+        opts = {
+            -- The defaults minus <C-b>/<C-f>, which are mapped in config() below
+            mappings = { "<C-u>", "<C-d>", "<C-y>", "<C-e>", "zt", "zz", "zb" },
+        },
+        config = function(_, opts)
+            local neoscroll = require("neoscroll")
+            neoscroll.setup(opts)
+
+            -- neoscroll's <C-b>/<C-f> scroll exactly one window height, so no lines carry
+            -- over. Scroll a bit less to keep some of the previous screen visible.
+            local overlap = 4
+            local function page(direction)
+                return function()
+                    local lines = math.max(vim.fn.winheight(0) - overlap, 1)
+                    neoscroll.scroll(direction * lines, { move_cursor = true, duration = 450 })
+                end
+            end
+            vim.keymap.set({ "n", "v", "x" }, "<C-f>", page(1), { desc = "Scroll page down" })
+            vim.keymap.set({ "n", "v", "x" }, "<C-b>", page(-1), { desc = "Scroll page up" })
+        end,
     },
 
     -- The refactoring extra puts its keys under <leader>r, which is Find Files here

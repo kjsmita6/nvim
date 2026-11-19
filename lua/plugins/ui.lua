@@ -67,6 +67,9 @@ return {
         opts = {
             -- lvim had indent-blankline disabled
             indent = { enabled = false },
+            -- neoscroll handles scroll animation (see plugins/editor.lua); with both on, snacks
+            -- re-animates each neoscroll scroll, so the view overshoots and then jumps back
+            scroll = { enabled = false },
             picker = {
                 sources = {
                     explorer = {

@@ -6,6 +6,13 @@ return {
                 -- angularls itself is enabled by the lang.angular extra
                 angularls = {
                     filetypes = { "typescript", "html", "typescriptreact", "typescript.tsx", "htmlangular" },
+                    -- vtsls already provides inlay hints in .ts files. Neovim keeps one version
+                    -- stamp per buffer but stores hints per client, so with two hint providers a
+                    -- reply from one client makes the other's stale hints look current, and
+                    -- placing them fails with "Invalid 'col': out of range" after an edit.
+                    on_init = function(client)
+                        client.server_capabilities.inlayHintProvider = false
+                    end,
                 },
                 groovyls = {
                     capabilities = {
